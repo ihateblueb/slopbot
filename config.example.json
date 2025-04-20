@@ -1,0 +1,27 @@
+{
+  "token": "",
+  "url": "https://example.com/",
+  "type": "mastodon",
+  "cw": "markov generated post",
+  "excludedVisibilities": [
+    "direct"
+  ],
+  "excludedCws": {
+    "contains": [
+      "personal", "gross", "yuck"
+    ],
+    "equals": ["-", "."]
+  },
+  "excludedText": {
+    "contains": [
+      "eww", "ouch"
+    ],
+    "equals": [":)"]
+  },
+  "sources": {
+    "misskeyExport": [
+      "example_export.json",
+      "other_export.json"
+    ]
+  }
+}

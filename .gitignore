@@ -1,0 +1,6 @@
+*export.json
+config.json
+obj/
+bin/
+.idea/
+.DS_Store
