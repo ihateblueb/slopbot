@@ -89,7 +89,6 @@ class Program
                 if (skip)
                     continue;
 
-                //('@','@​').replace('#','#​')
                 var editedString = entry.Text
                     .Replace("@", "@​")
                     .Replace("#", "#​");
