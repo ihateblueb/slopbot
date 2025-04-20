@@ -6,9 +6,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        if (args.Length > 0 && args[0].Equals(""))
+        if (args.Length > 0 && args[0].Equals("scrape"))
         {
-            GenerateModel();
+            MastodonScraper.Scrape().Wait();
         }
         else
         {
@@ -49,10 +49,10 @@ class Program
             {
                 var skip = false;
 
-                if (string.IsNullOrEmpty(entry.Text))
+                if (string.IsNullOrEmpty(entry.Text) || string.IsNullOrEmpty(entry.Visibility))
                     skip = true;
 
-                if (!skip && config.ExcludedVisibilities != null)
+                if (!skip && config.ExcludedVisibilities != null && config.ExcludedVisibilities.Length > 0)
                 {
                     foreach (var excludedVisibility in config.ExcludedVisibilities)
                     {
@@ -61,28 +61,41 @@ class Program
                     }
                 }
 
-
-                if (!skip && !string.IsNullOrEmpty(entry.Cw) && config.ExcludedCws?.Contains != null)
+                if (!skip && !string.IsNullOrEmpty(entry.Cw) && config.ExcludedCws != null)
                 {
-                    foreach (var containKeyword in config.ExcludedCws.Contains)
+                    if (config.ExcludedCws.Contains != null && config.ExcludedCws.Contains.Length > 0)
                     {
-                        if (entry.Cw.Contains(containKeyword)) skip = true;
+                        foreach (var containKeyword in config.ExcludedCws.Contains)
+                        {
+                            if (entry.Cw.Contains(containKeyword)) skip = true;
+                        }
                     }
-                    foreach (var equalsKeyword in config.ExcludedCws.Equals)
+
+                    if (config.ExcludedCws.Equals != null && config.ExcludedCws.Equals.Length > 0)
                     {
-                        if (entry.Cw.Equals(equalsKeyword)) skip = true;
+                        foreach (var equalsKeyword in config.ExcludedCws.Equals)
+                        {
+                            if (entry.Cw.Equals(equalsKeyword)) skip = true;
+                        }
                     }
                 }
 
-                if (!skip && config.ExcludedText?.Contains != null)
+                if (!skip && config.ExcludedText != null)
                 {
-                    foreach (var containKeyword in config.ExcludedText.Contains)
+                    if (config.ExcludedText.Contains != null && config.ExcludedText.Contains.Length > 0)
                     {
-                        if (entry.Text.Contains(containKeyword)) skip = true;
+                        foreach (var containKeyword in config.ExcludedText.Contains)
+                        {
+                            if (entry.Text.Contains(containKeyword)) skip = true;
+                        }
                     }
-                    foreach (var equalsKeyword in config.ExcludedText.Equals)
+
+                    if (config.ExcludedText.Equals != null && config.ExcludedText.Equals.Length > 0)
                     {
-                        if (entry.Text.Equals(equalsKeyword)) skip = true;
+                        foreach (var equalsKeyword in config.ExcludedText.Equals)
+                        {
+                            if (entry.Text.Equals(equalsKeyword)) skip = true;
+                        }
                     }
                 }
 

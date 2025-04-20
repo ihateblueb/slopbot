@@ -19,6 +19,7 @@ public class Config
     public string? Type { set; get; }
     public string? Cw { set; get; }
     public string[]? ExcludedVisibilities { set; get; }
+    public string[]? AccountsToScrape { set; get; }
     public ConfigExclusionRules? ExcludedCws { set; get; }
     public ConfigExclusionRules? ExcludedText  { set; get; }
     public ConfigSources? Sources { set; get; }

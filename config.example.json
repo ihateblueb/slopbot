@@ -4,8 +4,9 @@
   "type": "mastodon",
   "cw": "markov generated post",
   "excludedVisibilities": [
-    "direct"
+    "specified"
   ],
+  "accountsToScrape": [],
   "excludedCws": {
     "contains": [
       "personal", "gross", "yuck"
