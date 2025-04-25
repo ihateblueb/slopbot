@@ -3,6 +3,7 @@
   "url": "https://example.com/",
   "type": "mastodon",
   "cw": "markov generated post",
+  "timer": 60,
   "excludedVisibilities": [
     "specified"
   ],

@@ -35,6 +35,8 @@ public class Post
             postBody);
 
         Console.WriteLine($"\n{response.StatusCode} :: {await response.Content.ReadAsStringAsync()}");
+
+        HttpClient = new HttpClient();
     }
 
     public static async Task PostToMisskey(string sentence)
@@ -64,5 +66,7 @@ public class Post
             postBody);
 
         Console.WriteLine($"\n{response.StatusCode} :: {await response.Content.ReadAsStringAsync()}");
+
+        HttpClient = new HttpClient();
     }
 }

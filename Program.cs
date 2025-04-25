@@ -10,13 +10,17 @@ class Program
         {
             MastodonScraper.Scrape().Wait();
         }
+        if (args.Length > 0 && args[0].Equals("backgroundProcess"))
+        {
+            BackgroundProcess.Run();
+        }
         else
         {
             GenerateModel();
         }
     }
 
-    static void GenerateModel()
+    public static void GenerateModel()
     {
         var config = Config.Get();
 

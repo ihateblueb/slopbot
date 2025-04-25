@@ -18,6 +18,7 @@ public class Config
     public string? Url { set; get; }
     public string? Type { set; get; }
     public string? Cw { set; get; }
+    public int? Timer { set; get; }
     public string[]? ExcludedVisibilities { set; get; }
     public string[]? AccountsToScrape { set; get; }
     public ConfigExclusionRules? ExcludedCws { set; get; }
