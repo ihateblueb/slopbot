@@ -4,8 +4,16 @@ namespace slopbot;
 
 public class BackgroundProcess
 {
+    static ManualResetEvent _quitEvent = new ManualResetEvent(false);
+
     public static void Run()
     {
+        Console.CancelKeyPress += (_, args) =>
+        {
+            _quitEvent.Set();
+            args.Cancel = true;
+        };
+
         var config = Config.Get();
         var min = config.Timer ?? 60;
         var time = min * 60 * 1000;
@@ -16,8 +24,10 @@ public class BackgroundProcess
         timer.Elapsed += new ElapsedEventHandler(EventHandler);
         timer.Start();
 
-        while (true)
-        { }
+        _quitEvent.WaitOne();
+
+        timer.Stop();
+        Console.WriteLine($"Background process stopping");
     }
 
     private static void EventHandler(object source, ElapsedEventArgs args)
